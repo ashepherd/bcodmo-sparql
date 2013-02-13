@@ -1,0 +1,35 @@
+# Get all data from any cruise at R2R in the BCO-DMO repostitory
+# @title Data via R2R
+# @author Adam Shepherd
+# @endpoint http://linked.rvdata.us/sparql
+# @see http://www.bco-dmo.org
+# @see http://linked.bco-dmo.org
+# @see http://linked.bco-dmo.org/sparql
+# @see http://linked.rvdata.us
+# @tag R2R
+# @tag data
+# @tag BCO-DMO
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX r2r: <http://linked.rvdata.us/vocab/resource/class/>
+
+SELECT ?cruiseName ?data ?dataDescription ?dataLink
+
+WHERE {
+  BIND (<http://linked.rvdata.us/resource/repository/BCO-DMO> AS ?repositoryURI)
+
+  ?cruise rdfs:label ?cruiseName.
+
+  ?cruise r2r:Fileset ?files.
+  ?files rdfs:label ?data.
+  ?files r2r:Format ?format.
+  ?format rdfs:description ?dataDescription.
+  ?files dcterms:tableOfContents ?dataLink.
+
+  ?cruise r2r:Holding ?holding.
+  ?holding dcterms:source ?dataURL.
+  ?holding r2r:Repository ?repository
+  FILTER (?repository = ?repositoryURI).
+  ?repository rdfs:label ?repositoryName
+}
+ORDER BY ?cruiseName ?data

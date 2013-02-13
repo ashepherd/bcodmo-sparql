@@ -1,0 +1,17 @@
+# Get all BCO-DMO Awards
+# @title BCO-DMO Awards
+# @author Adam Shepherd
+# @endpoint http://escience.rpi.edu:8890/sparql/
+# @see http://www.bco-dmo.org
+# @see http://linked.bco-dmo.org
+# @see http://linked.bco-dmo.org/sparql
+# @tag BCO-DMO
+# @tag awards
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX bcodmo: <http://escience.rpi.edu/ontology/BCO-DMO/bcodmo/3/0/>
+
+DESCRIBE ?award ?source
+WHERE {
+  ?award rdf:type bcodmo:GrantAward .
+  ?award bcodmo:hasFundingSource ?source .
+}

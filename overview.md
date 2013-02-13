@@ -1,0 +1,1 @@
+Here is an overview of some BCO-DMO SPARQL queries.

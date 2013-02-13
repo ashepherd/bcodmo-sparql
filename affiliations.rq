@@ -1,0 +1,16 @@
+# Get all BCO-DMO Affiliations
+# @title BCO-DMO Affiliations
+# @author Adam Shepherd
+# @endpoint http://escience.rpi.edu:8890/sparql/
+# @see http://www.bco-dmo.org
+# @see http://linked.bco-dmo.org
+# @see http://linked.bco-dmo.org/sparql
+# @tag BCO-DMO
+# @tag affiliations
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+
+DESCRIBE ?Organization
+WHERE {
+  ?Organization rdf:type foaf:Organization .
+}

@@ -1,0 +1,5 @@
+{
+ "title": "BCO-DMO SPARQL Queries",
+ "description": "A collection of sparql queries relevant to BCO-DMO",
+ "extra-files": ["more-info.md"]
+}	

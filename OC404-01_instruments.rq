@@ -1,0 +1,37 @@
+# Instruments with the NVS 2.0 definition from the OC404-01 cruise
+# @title OC404-01 Instruments
+# @author Adam Shepherd
+# @endpoint http://escience.rpi.edu:8890/sparql/
+# @see http://www.bco-dmo.org
+# @see http://linked.bco-dmo.org
+# @see http://linked.bco-dmo.org/sparql
+# @see http://vocab.nerc.ac.uk/sparql
+# @tag NVS
+# @tag instruments
+# @tag deployment
+# @tag BCO-DMO
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX bcodmo: <http://escience.rpi.edu/ontology/BCO-DMO/bcodmo/3/0/>
+
+SELECT ?instrumentName ?type ?definition
+WHERE {
+
+ ?deployment a bcodmo:Deployment .
+ ?deployment bcodmo:ofPlatform ?platform .
+ ?platform a bcodmo:Vessel .
+ ?deployment rdfs:label ?cruise .
+ FILTER regex(?cruise, "OC404-01")
+ 
+ ?dd bcodmo:fromDeployment ?deployment .
+ ?dd a bcodmo:DeploymentDataset .
+ ?dd bcodmo:fromCollection ?dataset .
+
+ ?instrument a bcodmo:Instrument .
+ ?dataset bcodmo:fromInstrument ?instrument .
+ ?instrument rdfs:label ?instrumentName
+ OPTIONAL {  ?instrument rdf:type ?type }
+
+ SERVICE <http://vocab.nerc.ac.uk/sparql>
+     { ?type skos:definition ?definition }
+ 
+} ORDER BY ?instrumentName

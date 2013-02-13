@@ -1,0 +1,16 @@
+# Get all BCO-DMO Projects
+# @title BCO-DMO Projects
+# @author Adam Shepherd
+# @endpoint http://escience.rpi.edu:8890/sparql/
+# @see http://www.bco-dmo.org
+# @see http://linked.bco-dmo.org
+# @see http://linked.bco-dmo.org/sparql
+# @tag BCO-DMO
+# @tag projects
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX bcodmo: <http://escience.rpi.edu/ontology/BCO-DMO/bcodmo/3/0/>
+
+DESCRIBE ?proj
+WHERE {
+  ?proj rdf:type bcodmo:Project .
+}
