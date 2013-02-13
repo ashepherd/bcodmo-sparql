@@ -1,0 +1,143 @@
+<html>
+  <head>
+    <title>BCO-DMO SPARQL Queries</title>
+    <link href="bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="codemirror.css">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+    </style>    
+	<script src="jquery.js"></script> 		
+	<script src="bootstrap.min.js"></script>
+	
+	<script src="codemirror.js" type="text/javascript"></script> 		 				
+	<script src="sparql.js"></script>    
+  </head>
+  <body>
+  
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="brand" href="index.html">BCO-DMO SPARQL Queries</a>
+          <ul class="nav">
+          	
+		  		<li><a href="index.html#overview">Overview</a></li>
+		  			  	
+		  	
+		  	  
+		  	    <li><a href="more-info.html">
+		  	    	more-info
+		  	    	</a></li>
+		  	  
+		  	
+		  </ul>
+        </div>
+      </div>
+    </div>
+    
+   <div class="container-fluid" vocab="http://purl.org/dc/elements/1.1/">
+      <div class="row-fluid">
+        <div class="span12">
+          <div class="row-fluid">          		
+              <div id="query-viewer">              		             
+					<h2 property="title">KM0414 Data via R2R</h2>
+					
+						<p property="description"><p>Get all data from the KM0414 cruise from R2R</p>
+</p>
+											
+					<dl>					
+					  <dt>Source File</dt>
+					  <dd><code>KM0414_data_R2R.rq</code></dd>
+					  
+					  <dt>Author</dt>
+					  <dd><span property="creator">Adam Shepherd</span></dd>
+					  
+					  
+					  <dt>Link</dt>
+					  <dd><a href="http://www.bco-dmo.org">http://www.bco-dmo.org</a></dd>
+					  
+					  <dt>Link</dt>
+					  <dd><a href="http://linked.bco-dmo.org">http://linked.bco-dmo.org</a></dd>
+					  
+					  <dt>Link</dt>
+					  <dd><a href="http://linked.bco-dmo.org/sparql">http://linked.bco-dmo.org/sparql</a></dd>
+					  
+					  <dt>Link</dt>
+					  <dd><a href="http://linked.rvdata.us">http://linked.rvdata.us</a></dd>
+					  			  
+					   
+					  	<dt>Tag</dt>
+					  	<dd>
+					  	   <span property="subject">R2R</span>, <span property="subject">data</span>, <span property="subject">BCO-DMO</span>
+					  	</dd>
+					  							  					  
+					</dl>					
+					<textarea id="sparql" cols="120" rows="50">PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX r2r: <http://linked.rvdata.us/vocab/resource/class/>
+
+SELECT ?cruiseName ?data ?dataDescription ?dataLink
+
+WHERE {
+  BIND (<http://linked.rvdata.us/resource/cruise/ KM0414> AS ?cruiseURI)
+  BIND (<http://linked.rvdata.us/resource/repository/BCO-DMO> AS ?repositoryURI)
+
+  ?cruise rdfs:label ?cruiseName.
+  FILTER(?cruise = ?cruiseURI)
+
+  ?cruise r2r:Fileset ?files.
+  ?files rdfs:label ?data.
+  ?files r2r:Format ?format.
+  ?format rdfs:description ?dataDescription.
+  ?files dcterms:tableOfContents ?dataLink.
+
+  ?cruise r2r:Holding ?holding.
+  ?holding dcterms:source ?dataURL.
+  ?holding r2r:Repository ?repository
+  FILTER (?repository = ?repositoryURI).
+  ?repository rdfs:label ?repositoryName
+}
+ORDER BY ?cruiseName ?data</textarea>
+					<script>
+					  var editor = CodeMirror.fromTextArea(document.getElementById("sparql"), {
+						    height: "250px",
+						    width: "250px",
+						    autofocus: false,
+						    readOnly: true,
+						    
+						    parserfile: "parsesparql.js",
+						    stylesheet: "/sparqlcolors.css",
+						    path: "js/",
+						    lineNumbers: true
+						  });												
+					</script>	
+					
+					<h3>Test This Query</h3>
+					<p>Try this query against the following endpoints:</p>
+					<ul>
+					  
+					    <li>
+					      <a href="http://linked.rvdata.us/sparql?query=PREFIX+rdfs%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0APREFIX+dcterms%3A+%3Chttp%3A%2F%2Fpurl.org%2Fdc%2Fterms%2F%3E%0APREFIX+r2r%3A+%3Chttp%3A%2F%2Flinked.rvdata.us%2Fvocab%2Fresource%2Fclass%2F%3E%0A%0ASELECT+%3FcruiseName+%3Fdata+%3FdataDescription+%3FdataLink%0A%0AWHERE+%7B%0A++BIND+%28%3Chttp%3A%2F%2Flinked.rvdata.us%2Fresource%2Fcruise%2F+KM0414%3E+AS+%3FcruiseURI%29%0A++BIND+%28%3Chttp%3A%2F%2Flinked.rvdata.us%2Fresource%2Frepository%2FBCO-DMO%3E+AS+%3FrepositoryURI%29%0A%0A++%3Fcruise+rdfs%3Alabel+%3FcruiseName.%0A++FILTER%28%3Fcruise+%3D+%3FcruiseURI%29%0A%0A++%3Fcruise+r2r%3AFileset+%3Ffiles.%0A++%3Ffiles+rdfs%3Alabel+%3Fdata.%0A++%3Ffiles+r2r%3AFormat+%3Fformat.%0A++%3Fformat+rdfs%3Adescription+%3FdataDescription.%0A++%3Ffiles+dcterms%3AtableOfContents+%3FdataLink.%0A%0A++%3Fcruise+r2r%3AHolding+%3Fholding.%0A++%3Fholding+dcterms%3Asource+%3FdataURL.%0A++%3Fholding+r2r%3ARepository+%3Frepository%0A++FILTER+%28%3Frepository+%3D+%3FrepositoryURI%29.%0A++%3Frepository+rdfs%3Alabel+%3FrepositoryName%0A%7D%0AORDER+BY+%3FcruiseName+%3Fdata" target="_blank">http://linked.rvdata.us/sparql</a>
+					    </li>
+					  
+					</ul> 
+					
+              </div>
+          </div><!--/row-->
+        </div><!--/span-->
+      </div><!--/row-->
+
+	<hr>
+	<footer class="footer">Generated with <a href="http://github.com/ldodds/sparql-doc">sparql-doc</a>.</footer>
+
+</div>
+
+  </body>	
+</html>
+    
+   
