@@ -65,9 +65,6 @@
 					  <dd><a href="http://linked.bco-dmo.org">http://linked.bco-dmo.org</a></dd>
 					  
 					  <dt>Link</dt>
-					  <dd><a href="http://linked.bco-dmo.org/sparql">http://linked.bco-dmo.org/sparql</a></dd>
-					  
-					  <dt>Link</dt>
 					  <dd><a href="http://vocab.nerc.ac.uk/sparql">http://vocab.nerc.ac.uk/sparql</a></dd>
 					  			  
 					   
@@ -121,7 +118,7 @@ WHERE {
 					<ul>
 					  
 					    <li>
-					      <a href="http://escience.rpi.edu:8890/sparql/?query=PREFIX+rdfs%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0APREFIX+bcodmo%3A+%3Chttp%3A%2F%2Fescience.rpi.edu%2Fontology%2FBCO-DMO%2Fbcodmo%2F3%2F0%2F%3E%0A%0ASELECT+%3FinstrumentName+%3Ftype+%3Fdefinition%0AWHERE+%7B%0A%0A+%3Fdeployment+a+bcodmo%3ADeployment+.%0A+%3Fdeployment+bcodmo%3AofPlatform+%3Fplatform+.%0A+%3Fplatform+a+bcodmo%3AVessel+.%0A+%3Fdeployment+rdfs%3Alabel+%3Fcruise+.%0A+FILTER+regex%28%3Fcruise%2C+%22OC404-01%22%29%0A+%0A+%3Fdd+bcodmo%3AfromDeployment+%3Fdeployment+.%0A+%3Fdd+a+bcodmo%3ADeploymentDataset+.%0A+%3Fdd+bcodmo%3AfromCollection+%3Fdataset+.%0A%0A+%3Finstrument+a+bcodmo%3AInstrument+.%0A+%3Fdataset+bcodmo%3AfromInstrument+%3Finstrument+.%0A+%3Finstrument+rdfs%3Alabel+%3FinstrumentName%0A+OPTIONAL+%7B++%3Finstrument+rdf%3Atype+%3Ftype+%7D%0A%0A+SERVICE+%3Chttp%3A%2F%2Fvocab.nerc.ac.uk%2Fsparql%3E%0A+++++%7B+%3Ftype+skos%3Adefinition+%3Fdefinition+%7D%0A+%0A%7D+ORDER+BY+%3FinstrumentName" target="_blank">http://escience.rpi.edu:8890/sparql/</a>
+					      <a href="http://linked.bco-dmo.org/sparql?query=PREFIX+rdfs%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0APREFIX+bcodmo%3A+%3Chttp%3A%2F%2Fescience.rpi.edu%2Fontology%2FBCO-DMO%2Fbcodmo%2F3%2F0%2F%3E%0A%0ASELECT+%3FinstrumentName+%3Ftype+%3Fdefinition%0AWHERE+%7B%0A%0A+%3Fdeployment+a+bcodmo%3ADeployment+.%0A+%3Fdeployment+bcodmo%3AofPlatform+%3Fplatform+.%0A+%3Fplatform+a+bcodmo%3AVessel+.%0A+%3Fdeployment+rdfs%3Alabel+%3Fcruise+.%0A+FILTER+regex%28%3Fcruise%2C+%22OC404-01%22%29%0A+%0A+%3Fdd+bcodmo%3AfromDeployment+%3Fdeployment+.%0A+%3Fdd+a+bcodmo%3ADeploymentDataset+.%0A+%3Fdd+bcodmo%3AfromCollection+%3Fdataset+.%0A%0A+%3Finstrument+a+bcodmo%3AInstrument+.%0A+%3Fdataset+bcodmo%3AfromInstrument+%3Finstrument+.%0A+%3Finstrument+rdfs%3Alabel+%3FinstrumentName%0A+OPTIONAL+%7B++%3Finstrument+rdf%3Atype+%3Ftype+%7D%0A%0A+SERVICE+%3Chttp%3A%2F%2Fvocab.nerc.ac.uk%2Fsparql%3E%0A+++++%7B+%3Ftype+skos%3Adefinition+%3Fdefinition+%7D%0A+%0A%7D+ORDER+BY+%3FinstrumentName" target="_blank">http://linked.bco-dmo.org/sparql</a>
 					    </li>
 					  
 					</ul> 
