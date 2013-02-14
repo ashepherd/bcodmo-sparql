@@ -1,7 +1,7 @@
 # Get all BCO-DMO Funding Sources
 # @title BCO-DMO Funding Sources
 # @author Adam Shepherd
-# @endpoint http://escience.rpi.edu:8890/sparql/
+# @endpoint http://linked.bco-dmo.org/sparql
 # @see http://www.bco-dmo.org
 # @see http://linked.bco-dmo.org
 # @see http://linked.bco-dmo.org/sparql
